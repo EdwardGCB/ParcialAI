@@ -1,6 +1,6 @@
 <?php
 require ("./persistencia/Conexion.php");
-require ("./persistencia/MarcaDAO.php");
+require ("./persistencia/MarcaDao.php");
 
 class Marca{
   private $idMarca;
@@ -28,8 +28,8 @@ class Marca{
     $marcas = array();
     $conexion = new Conexion();
     $conexion -> abrirConexion();
-    $marcaDAO = new MarcaDAO();
-    $conexion -> ejecutarConsulta($marcaDAO -> consultarNombres());
+    $marcaD = new MarcaDao();
+    $conexion -> ejecutarConsulta($marcaD -> consultarNombres());
     while($registro = $conexion -> siguienteRegistro()){
         $marca = new Marca($registro[0]);
         array_push($marcas, $marca);

@@ -1,7 +1,6 @@
 <?php
 
-class MarcaDAO{
-  private $idMarca;
+class MarcaDao{
   private $nombre;
   
   public function __construct($nombre=""){
@@ -9,8 +8,7 @@ class MarcaDAO{
   }
   
   public function consultarNombres(){
-      return "select nombre
-              from Marca";
+      return "select nombre from Marca;";
   }
   
   
