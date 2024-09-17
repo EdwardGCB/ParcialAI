@@ -36,9 +36,9 @@ require ("logica/Marca.php");
 						<ul class="dropdown-menu">
 							<?php
 								$marcas = new Marca();
-								$marcas = $marcas->consultarNombres();
+								$marcas = $marcas->consultar();
 								foreach ($marcas as $marcaActual) {
-                  echo "<li><a class='dropdown-item' href='#'>".$marcaActual['nombre']."</a></li>";
+                  echo "<li><a class='dropdown-item' href='#'>".$marcaActual->getNombre()."</a></li>";
                 }
 							?>
 						</ul></li>

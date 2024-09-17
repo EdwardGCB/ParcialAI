@@ -1,16 +1,18 @@
 <?php
 
 class MarcaDao{
+  private $id;
   private $nombre;
+
   
-  public function __construct($nombre=""){
-      $this -> nombre = $nombre;
+  public function __construct($id=0, $nombre=""){
+    $this -> id = $id;
+    $this -> nombre = $nombre;
   }
   
-  public function consultarNombres(){
-      return "select nombre from Marca;";
+  public function consultar(){
+      return "select idMarca, nombre from Marca;";
   }
-  
   
 }
 

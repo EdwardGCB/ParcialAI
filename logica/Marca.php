@@ -1,5 +1,5 @@
 <?php
-require ("./persistencia/Conexion.php");
+require_once ("./persistencia/Conexion.php");
 require ("./persistencia/MarcaDao.php");
 
 class Marca{
@@ -24,14 +24,14 @@ class Marca{
     $this->nombre = $nombre;
   }
 
-  public function consultarNombres(){
+  public function consultar(){
     $marcas = array();
     $conexion = new Conexion();
     $conexion -> abrirConexion();
-    $marcaD = new MarcaDao();
-    $conexion -> ejecutarConsulta($marcaD -> consultarNombres());
+    $marcaDao = new MarcaDao();
+    $conexion -> ejecutarConsulta($marcaDao -> consultar());
     while($registro = $conexion -> siguienteRegistro()){
-        $marca = new Marca($registro[0]);
+        $marca = new Marca($registro[0], $registro[1]);
         array_push($marcas, $marca);
     }
     $conexion -> cerrarConexion();
