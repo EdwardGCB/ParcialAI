@@ -1,6 +1,6 @@
 <?php
 require_once ("./persistencia/Conexion.php");
-require ("./persistencia/MarcaDao.php");
+require_once ("./persistencia/MarcaDao.php");
 
 class Marca{
   private $idMarca;
@@ -24,6 +24,8 @@ class Marca{
     $this->nombre = $nombre;
   }
 
+  
+
   public function consultar(){
     $marcas = array();
     $conexion = new Conexion();
@@ -35,7 +37,21 @@ class Marca{
         array_push($marcas, $marca);
     }
     $conexion -> cerrarConexion();
-    return $marcas;        
+    return $marcas;
+  }
+
+  public function consultaIndividual($marca_idMarca){
+    $marca = null;
+    $conexion = new Conexion();
+    $conexion -> abrirConexion();
+    $marcaDao = new MarcaDao();
+    $conexion -> ejecutarConsulta($marcaDao -> consultaIndividual($marca_idMarca));
+    $registro = $conexion -> siguienteRegistro();
+    if($registro){
+      $marca = new Marca($registro[0], $registro[1]);
+    }
+    $conexion -> cerrarConexion();
+    return $marca;
   }
 
 }

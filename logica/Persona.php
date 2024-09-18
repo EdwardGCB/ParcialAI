@@ -7,6 +7,7 @@ class Persona{
     private $correo;
     private $clave;
 
+
     public function getIdPersona(){
         return $this->idPersona;
     }

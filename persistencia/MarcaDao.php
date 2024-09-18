@@ -13,6 +13,10 @@ class MarcaDao{
   public function consultar(){
       return "select idMarca, nombre from Marca;";
   }
+
+  public function consultaIndividual($idMarca){
+    return "select idMarca, nombre from Marca where idMarca = ".$idMarca.";";
+  }
   
 }
 

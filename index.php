@@ -1,6 +1,7 @@
 <?php
 require ("logica/Producto.php");
 require ("logica/Marca.php");
+require ("logica/Categoria.php");
 ?>
 <html>
 <head>
@@ -48,8 +49,13 @@ require ("logica/Marca.php");
 						href="#" role="button" data-bs-toggle="dropdown"
 						aria-expanded="false">Categoria</a>
 						<ul class="dropdown-menu">
-							<li><a class="dropdown-item" href="#">Categoria 1</a></li>
-							<li><a class="dropdown-item" href="#">Categoria 2</a></li>
+						<?php
+								$categorias = new Categoria();
+								$categorias = $categorias->consultar();
+								foreach ($categorias as $categoriaActual) {
+                  echo "<li><a class='dropdown-item' href='#'>" . $categoriaActual->getNombre() . "</a></li>";
+                }
+							?>
 						</ul></li>
 				</ul>
 			</div>
@@ -75,7 +81,9 @@ require ("logica/Marca.php");
                             echo "<div class='text-center'><img 	src='https://icons.iconarchive.com/icons/custom-icon-design/mono-general-1/256/faq-icon.png' width='70%' /></div>";
                             echo "<a href='#'>" . $productoActual->getNombre() . "</a><br>";
                             echo "Cantidad: " . $productoActual->getCantidad() . "<br>";
-                            echo "Valor: $" . $productoActual->getPrecioVenta();
+                            echo "Valor: $" . $productoActual->getPrecioVenta() . "<br>";
+														echo "Marca: " . $productoActual->getMarca()->getnombre() . "<br>";
+														echo "Categoria: " . $productoActual->getCategoria()->getnombre();
                             echo "</div>";
                             echo "</div>";
                             echo "</div>";

@@ -15,7 +15,8 @@ class ProductoDAO{
     }
     
     public function consultarTodos(){
-        return "select idProducto, nombre, cantidad, precioCompra, precioVenta from Producto;";
+        return "select p.idProducto, p.nombre, p.cantidad, p.precioCompra, p.precioVenta, p.Marca_idMarca, p.Categoria_idCategoria
+        FROM Producto AS p;";
     }
     
     
