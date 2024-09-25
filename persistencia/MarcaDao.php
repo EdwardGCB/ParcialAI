@@ -14,8 +14,8 @@ class MarcaDao{
       return "select idMarca, nombre from Marca;";
   }
 
-  public function consultaIndividual($idMarca){
-    return "select idMarca, nombre from Marca where idMarca = ".$idMarca.";";
+  public function consultaIndividual(){
+    return "select nombre from Marca where idMarca = ". $this -> id .";";
   }
   
 }

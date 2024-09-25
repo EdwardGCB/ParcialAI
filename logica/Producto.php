@@ -80,21 +80,34 @@ class Producto{
     
     public function consultarTodos(){
         $productos = array();
+        $marcas = array();
+        $categorias = array();
         $conexion = new Conexion();
         $conexion -> abrirConexion();
         $productoDAO = new ProductoDAO();
-        $marca = new Marca();
-        $categoria = new Categoria();
         $conexion -> ejecutarConsulta($productoDAO -> consultarTodos());
         while($registro = $conexion -> siguienteRegistro()){
+            //Crear un hashmap para tener la algoritmia para datos repetidos
+            if(array_key_exists($registro[5], $marcas)){
+                $marca = $marcas[$registro[5]];
+            }else{
+                $marca = new Marca($registro[5]);
+                $marca->consultaIndividual();
+            }
+            if (array_key_exists($registro[6], $categorias)) {
+                $categoria = $categorias[$registro[6]];
+            }else{
+                $categoria = new Categoria($registro[6]);
+                $categoria->consultaIndividual();
+            }
             $producto = new Producto(
                 $registro[0], 
                 $registro[1], 
                 $registro[2], 
                 $registro[3], 
                 $registro[4], 
-                $marca->consultaIndividual($registro[5]),
-                $categoria->consultaIndividual($registro[6])
+                $marca,
+                $categoria
             );
             array_push($productos, $producto);
         }

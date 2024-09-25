@@ -40,18 +40,14 @@ class Categoria{
     return $categorias;
   }
 
-  public function consultaIndividual($categoria_idCategoria){
-    $categoria = null;
+  public function consultaIndividual(){
     $conexion = new Conexion();
     $conexion -> abrirConexion();
     $categoriaDAO = new CategoriaDAO();
-    $conexion -> ejecutarConsulta($categoriaDAO -> consultaIndividual($categoria_idCategoria));
+    $conexion -> ejecutarConsulta($categoriaDAO -> consultaIndividual());
     $registro = $conexion -> siguienteRegistro();
-    if($registro){
-      $categoria = new Categoria($registro[0], $registro[1]);
-    }
+    $this->nombre = $registro[0];
     $conexion -> cerrarConexion();
-    return $categoria;
   }
 
 }

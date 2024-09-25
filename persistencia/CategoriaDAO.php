@@ -14,8 +14,8 @@ class CategoriaDAO{
       return "select idCategoria, nombre from Categoria;";
   }
 
-  public function consultaIndividual($idCategoria){
-    return "select idCategoria, nombre from Categoria where idCategoria = ".$idCategoria.";";
+  public function consultaIndividual(){
+    return "select idCategoria, nombre from Categoria where idCategoria = ". $this -> id.";";
   }
   
 }

@@ -40,18 +40,14 @@ class Marca{
     return $marcas;
   }
 
-  public function consultaIndividual($marca_idMarca){
-    $marca = null;
+  public function consultaIndividual(){
     $conexion = new Conexion();
     $conexion -> abrirConexion();
     $marcaDao = new MarcaDao();
-    $conexion -> ejecutarConsulta($marcaDao -> consultaIndividual($marca_idMarca));
+    $conexion -> ejecutarConsulta($marcaDao -> consultaIndividual());
     $registro = $conexion -> siguienteRegistro();
-    if($registro){
-      $marca = new Marca($registro[0], $registro[1]);
-    }
+    $this->nombre = $registro[0];
     $conexion -> cerrarConexion();
-    return $marca;
   }
 
 }
